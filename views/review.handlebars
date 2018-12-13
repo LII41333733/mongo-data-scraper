@@ -1,0 +1,45 @@
+
+      <div class="row">
+        
+        <div class="col s12 m3">
+          
+          <img src="{{artwork}}" alt="{{artist}} image" style="width: 100%" class="z-depth-5"/>
+          <h5>Pitchfork Score: {{score}}</h5>
+          <p>Genre: {{genre}}</p>
+          <a href="{{url}}" target="_blank">View on Pitchfork</a>
+        </div>
+        <div class="col s12 m9">
+          <h3>{{artist}}</h3>
+          <h4>{{album}}</h4>
+          {{{body}}}
+          <div class="divider"></div>
+            <h3>Comments</h3>
+            <div class="comment-container">
+                {{#each comments}}
+                  <div class="card-panel red lighten-2">
+                    <p class="white-text">{{comment}}</p>
+                    <strong>Written By: {{name}}</strong>
+                  </div>
+                {{/each}}
+            </div>
+          <div class="divider"></div>
+          <h3>Leave A Comment</h3>
+            
+           <form class="form-inline" data-id="{{url}}">
+            <div class="input-field">
+              <input type="text" class="validate comment-name" name="name" placeholder="Name" />
+              <label for="name">What is your name?</label>
+            </div>
+            <div class="input-field">
+              <textarea class="validate materialize-textarea comment" name="comment" placeholder="Enter your comment here. Be nice!"> </textarea>
+              <label for="comment">What is your comment?</label>
+            </div>
+            <button class="btn btn-floating waves-effect waves-light red lighten-2 submit" type="submit" name="action">
+              <i class="material-icons right">send</i>
+            </button>
+          </form>
+
+
+        </div>
+      </div>
+

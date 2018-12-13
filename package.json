@@ -1,0 +1,38 @@
+{
+  "name": "mongo-news",
+  "version": "1.0.0",
+  "description": "A web app that lets users leave comments on the latest news, brought to you by any other source",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrosenkranz/Mongo-News-Scrape.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "handlebars",
+    "cheerio",
+    "express"
+  ],
+  "author": "Alex Rosenkranz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexrosenkranz/Mongo-News-Scrape/issues"
+  },
+  "homepage": "https://github.com/alexrosenkranz/Mongo-News-Scrape#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^4.13.14",
+    "morgan": "^1.8.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}

@@ -1,0 +1,44 @@
+body {
+  background-image: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+  background-attachment: fixed;
+  font-family: "prociono",serif;
+  font-size: 16px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: "junction", sans-serif;
+}
+
+.card {
+  background-color: #64b5f6;
+}
+
+.card .card-image .card-title, .card .card-title {
+  font-size: 18px;
+  padding: 9px;
+  width: 100%;
+}
+.card-title h5 {
+  padding-bottom: 3px;
+  border-bottom: 1px solid white;
+  margin-bottom: 0.3rem
+}
+
+.card .card-image img {
+  mix-blend-mode: multiply;
+}
+
+.end-mark {
+  display: none;
+}
+
+.sideways {
+  transform: rotate(90deg);
+  transform-origin: right top;
+  font-size: 2.5rem;
+  position: fixed;
+  top: 90vh;
+  right: 5vh;
+  color: #ff1744;
+  font-family: "junction", sans-serif;
+}
