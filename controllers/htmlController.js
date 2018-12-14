@@ -1,20 +1,18 @@
-var express = require('express')
-var router = express.Router()
-var Article = require('../models/Articles.js')
-var request = require('request')
-var rp = require('request-promise')
-var axios = require('axios')
-var cheerio = require('cheerio')
+const express = require('express')
+const router = express.Router()
+const Article = require('../models/Articles.js')
+const axios = require('axios')
+const cheerio = require('cheerio')
 
 router.get('/', function (req, res) {
-  console.log("hi")
-  axios.get(`http://pitchfork.com/reviews/albums/`)
+  axios.get(`https://www.si.com/subcategory/mmqb`)
     .then(function (html) {
     const $ = cheerio.load(html.data);
-
-    $('.review').each(function (i, element) {
+    // partial tile media image-top margin-24-bottom  type-article
+    $('.type-article').each(function (i, element) {
       const link = $(element).children().attr('href')
-      const artist = $(element).find('.artist-list').text()
+      const artist = ($(element).children('.article-info').children('.article-info-extended').children('.byline').find('.style-orange').text().trim() == "") ? ("N/A") : ($(element).children('.article-info').children('.article-info-extended').children('.byline').find('.style-orange').text().trim())
+      console.log(artist)
       const album = $(element).children('a.review__link').children('.review__title').find('h2.review__title-album').text()
       const artwork = $(element).find('img').attr('src')
       const reviewObj = {
@@ -23,7 +21,7 @@ router.get('/', function (req, res) {
         url: `http://www.pitchfork.com${link}`,
         artwork: artwork
       }
-      console.log(reviewObj);
+      // console.log(reviewObj);
       let Review = new Article(reviewObj)
 
       Article.find({

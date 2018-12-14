@@ -6,7 +6,7 @@ const request = require('request')
 const cheerio = require('cheerio')
 const exphbs = require('express-handlebars')
 
-mongoose.Promise = Promise
+// mongoose.Promise = Promise
 
 // Controllers
 const apiController = require('./controllers/apiController.js')
