@@ -1,14 +1,7 @@
 $(document).ready(function () {
 
 
-// console.log($(".nfl-article img"))
 
-$(".nfl-article").each((i, element) => {
-  if (element.offsetHeight < 200) {
-    console.log("This one!")
-    element.remove();
-  }
-})
 
 
 

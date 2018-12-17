@@ -4,52 +4,65 @@ const Article = require('../models/Articles.js')
 const axios = require('axios')
 const cheerio = require('cheerio')
 
+var probe = require('probe-image-size');
+
+
 router.get('/', function (req, res) {
   axios.get(`https://www.si.com/nfl`)
     .then(function (html) {
       const $ = cheerio.load(html.data);
-      // partial tile media image-top margin-24-bottom  type-article
+
       $('.type-article').each(function (i, element) {
 
 
-          const reviewObj = {
-            link: `https://www.si.com${$(element).children().attr('href')}`,
-            writer: $(element).find('.style-orange').text().trim(),
-            title: $(element).children('.article-info').find('.media-heading').text().trim(),
-            category: $(element).children('.article-info').find('.unskinned').text().trim(),
-            imageURL: $(element).find('.inner-container img').attr('src'),
-            description: $(element).find('.summary').text().trim()
+        // let div = '';
+
+        // probe(imageURL).then(result => {
+        //   if (result.height < 300) {
+        //     div = "small-div"
+        //   } else {
+        //     div = "big-div"
+        //   }
+        // });
+
+        // console.log(div)
+
+        let reviewObj = {
+          link: `https://www.si.com${$(element).children().attr('href')}`,
+          writer: $(element).find('.style-orange').text().trim(),
+          title: $(element).children('.article-info').find('.media-heading').text().trim(),
+          category: $(element).children('.article-info').find('.unskinned').text().trim(),
+          // imageURL: $(element).find('.inner-container img').attr('src'),
+          description: $(element).find('.summary').text().trim(),
+          imageURL: $(element).find('.inner-container img').attr('src')
+        }
+
+        let Review = new Article(reviewObj)
+
+        Article.find({
+          title: reviewObj.title
+        }).exec(function (err, doc) {
+          // console.log(doc)
+          if (doc.length) {
+            // console.log('Review already exists!')
+          } else {
+            Review.save(function (err, doc) {
+              if (err) {
+                console.log(err);
+                res.send(err)
+              } else {
+                // console.log('review inserted')
+              }
+            })
           }
+        })
 
-
-
-
-
-          let Review = new Article(reviewObj)
-
-          Article.find({
-            title: reviewObj.title
-          }).exec(function (err, doc) {
-            console.log(doc)
-            if (doc.length) {
-              console.log('Review already exists!')
-            } else {
-              Review.save(function (err, doc) {
-                if (err) {
-                  console.log(err);
-                  res.send(err)
-                } else {
-                  console.log('review inserted')
-                }
-              })
-            }
-          })
-        
       })
     }).then(function () {
       Article.find({}).populate('comments').sort({
         date: -1
       }).exec(function (err, doc) {
+        // console.log(doc)
         if (err) {
           res.send(err)
         } else {
@@ -104,4 +117,4 @@ router.get('/review/:id', function (req, res) {
   })
 })
 
-module.exports = router
+module.exports = router;

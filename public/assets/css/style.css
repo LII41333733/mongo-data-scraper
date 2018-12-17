@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to bottom, #cfd9df 0%, #e2ebf0 100%);
+  background-image: linear-gradient(to bottom, #4f8ece 0%, #e2ebf0 100%);
   background-attachment: fixed;
   font-family: "prociono",serif;
   font-size: 16px;
@@ -10,18 +10,17 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .card {
-  background-color: #64b5f6;
+  /* background-color: #64b5f6; */
 }
 
 .card .card-image .card-title, .card .card-title {
-  font-size: 2px;
-  padding: 9px;
+  font-size: 14px;
+  padding: 5px;
   width: 100%;
 }
 .card-title h5 {
   padding-bottom: 3px;
   border-bottom: 1px solid white;
-  margin-bottom: 0.3rem
 }
 
 .card .card-image img {
@@ -41,4 +40,13 @@ h1,h2,h3,h4,h5,h6{
   right: 5vh;
   color: #ff1744;
   font-family: "junction", sans-serif;
+}
+
+.title {
+  color: white;
+  font-size: 3rem;
+}
+
+.row {
+  margin: 0;
 }
