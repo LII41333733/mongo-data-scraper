@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col s12">
     <div class="row">
       {{#each reviewList}}
@@ -7,9 +6,9 @@
         <a href="/review/{{this._id}}">
           <div class="card">
             <div class="card-image">
-              <img src="{{this.artwork}}">
+              <img src="{{imageURL}}">
               <span class="card-title">
-                <h5>{{this.artist}}</h5>{{this.album}}</span>
+                <p>{{this.title}}</p>{{this.writer}}{{this.category}}</span>
             </div>
           </div>
         </a>

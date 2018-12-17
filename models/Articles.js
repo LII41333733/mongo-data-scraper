@@ -4,11 +4,11 @@ const Schema = mongoose.Schema
 
 const ArticleSchema = new Schema({
   // author: just a string
-  artist: {
+  writer: {
     type: String
   },
   // title: just a string
-  album: {
+  title: {
     type: String,
     // validate: {
     //   validator: function (v, cb) {
@@ -19,10 +19,10 @@ const ArticleSchema = new Schema({
     //   message: 'Entry already exists!'
     // }
   },
-  artwork: {
+ category: {
     type: String
   },
-  url: {
+  imageURL: {
     type: String
   },
   date: {

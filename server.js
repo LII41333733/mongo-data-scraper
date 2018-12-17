@@ -15,7 +15,7 @@ const htmlController = require('./controllers/htmlController.js')
 // Initialize Express
 const app = express()
 const PORT = process.env.PORT || 3000
-const mongoUrl = 'mongodb://localhost/pitchforkScrape'
+const mongoUrl = 'mongodb://localhost/sportsScrape'
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
@@ -38,13 +38,13 @@ if (process.env.MONGODB_URI) {
 const db = mongoose.connection
 
 // Show any mongoose errors
-db.on('error', function (error) {
-  console.log('Mongoose Error: ', error)
-})
+// db.on('error', function (error) {
+//   console.log('Mongoose Error: ', error)
+// })
 
-db.once('open', function () {
-  console.log('Mongoose connection successful.')
-})
+// db.once('open', function () {
+//   console.log('Mongoose connection successful.')
+// })
 
 app.use('/', htmlController)
 app.use('/api', apiController)

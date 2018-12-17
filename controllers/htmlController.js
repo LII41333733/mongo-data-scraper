@@ -5,59 +5,64 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 
 router.get('/', function (req, res) {
-  axios.get(`https://www.si.com/subcategory/mmqb`)
+  axios.get(`https://www.si.com/nfl`)
     .then(function (html) {
-    const $ = cheerio.load(html.data);
-    // partial tile media image-top margin-24-bottom  type-article
-    $('.type-article').each(function (i, element) {
-      const link = $(element).children().attr('href')
-      const artist = ($(element).children('.article-info').children('.article-info-extended').children('.byline').find('.style-orange').text().trim() == "") ? ("N/A") : ($(element).children('.article-info').children('.article-info-extended').children('.byline').find('.style-orange').text().trim())
-      console.log(artist)
-      const album = $(element).children('a.review__link').children('.review__title').find('h2.review__title-album').text()
-      const artwork = $(element).find('img').attr('src')
-      const reviewObj = {
-        artist: artist,
-        album: album,
-        url: `http://www.pitchfork.com${link}`,
-        artwork: artwork
-      }
-      // console.log(reviewObj);
-      let Review = new Article(reviewObj)
+      const $ = cheerio.load(html.data);
+      // partial tile media image-top margin-24-bottom  type-article
+      $('.type-article').each(function (i, element) {
 
-      Article.find({
-        album: reviewObj.album
-      }).exec(function (err, doc) {
-        if (doc.length) {
-          console.log('Review already exists!')
-        } else {
-          Review.save(function (err, doc) {
-            if (err) {
-              console.log(err);
-              res.send(err)
+
+          const reviewObj = {
+            link: `https://www.si.com${$(element).children().attr('href')}`,
+            writer: $(element).find('.style-orange').text().trim(),
+            title: $(element).children('.article-info').find('.media-heading').text().trim(),
+            category: $(element).children('.article-info').find('.unskinned').text().trim(),
+            imageURL: $(element).find('.inner-container img').attr('src'),
+            description: $(element).find('.summary').text().trim()
+          }
+
+
+
+
+
+          let Review = new Article(reviewObj)
+
+          Article.find({
+            title: reviewObj.title
+          }).exec(function (err, doc) {
+            console.log(doc)
+            if (doc.length) {
+              console.log('Review already exists!')
             } else {
-              console.log('review inserted')
+              Review.save(function (err, doc) {
+                if (err) {
+                  console.log(err);
+                  res.send(err)
+                } else {
+                  console.log('review inserted')
+                }
+              })
             }
           })
+        
+      })
+    }).then(function () {
+      Article.find({}).populate('comments').sort({
+        date: -1
+      }).exec(function (err, doc) {
+        if (err) {
+          res.send(err)
+        } else {
+          let reviewList = {
+            reviewList: doc
+          }
+          res.render('index', reviewList)
         }
       })
+    }).catch(function (err) {
+      console.log(err);
+      res.send(err);
     })
-  }).then(function () {
-    Article.find({}).populate('comments').sort({
-      date: -1
-    }).exec(function (err, doc) {
-      if (err) {
-        res.send(err)
-      } else {
-        let reviewList = {
-          reviewList: doc
-        }
-        res.render('index', reviewList)
-      }
-    })
-  }).catch(function (err) {
-    console.log(err);
-    res.send(err);
-  })
 })
 
 router.get('/review/:id', function (req, res) {
