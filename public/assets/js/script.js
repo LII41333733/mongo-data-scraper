@@ -1,4 +1,18 @@
 $(document).ready(function () {
+
+
+// console.log($(".nfl-article img"))
+
+$(".nfl-article").each((i, element) => {
+  if (element.offsetHeight < 200) {
+    console.log("This one!")
+    element.remove();
+  }
+})
+
+
+
+
   $('.submit').on('click', function (e) {
     e.preventDefault()
 
@@ -38,4 +52,10 @@ $(document).ready(function () {
     $('.comment-name').val('')
     $('.comment').val('')
   })
+
+  // $(".nfl-article").each((i, element) => {
+  //   console.log(element.clientHeight)
+  // })
 })
+
+

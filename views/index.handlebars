@@ -2,17 +2,20 @@
   <div class="col s12">
     <div class="row">
       {{#each reviewList}}
-      <div class="col s6 m3">
+      {{#if this.title}}
+      <div class="col s6 m4 nfl-article">
         <a href="/review/{{this._id}}">
           <div class="card">
             <div class="card-image">
               <img src="{{imageURL}}">
-              <span class="card-title">
-                <p>{{this.title}}</p>{{this.writer}}{{this.category}}</span>
+              <span class="card-title"><p>{{this.title}}</p>
+                <p>{{this.writer}}</p>
+                <p>{{this.category}}</p></span>
             </div>
           </div>
         </a>
       </div>
+      {{/if}}
       {{/each}}
     </div>
   </div>
