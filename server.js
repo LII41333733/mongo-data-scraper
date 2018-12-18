@@ -15,7 +15,7 @@ const htmlController = require('./controllers/htmlController.js')
 // Initialize Express
 const app = express()
 const PORT = process.env.PORT || 3000
-const mongoUrl = 'mongodb://localhost/sportsScrape'
+const mongoUrl = 'mongodb://localhost/sportsNFLScrape'
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')

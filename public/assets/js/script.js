@@ -1,10 +1,6 @@
 $(document).ready(function () {
 
-
-
-
-
-
+  $('.media-body').remove()
 
   $('.submit').on('click', function (e) {
     e.preventDefault()
@@ -16,8 +12,10 @@ $(document).ready(function () {
     let comment = {
       name: commentName,
       comment: commentBody,
-      url: commentUrl
+      blogLink: commentUrl
     }
+
+    console.log(comment)
 
     fetch('/api', {
       method: 'POST',

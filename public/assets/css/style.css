@@ -9,9 +9,6 @@ h1,h2,h3,h4,h5,h6{
   font-family: "junction", sans-serif;
 }
 
-.card {
-  /* background-color: #64b5f6; */
-}
 
 .card .card-image .card-title, .card .card-title {
   font-size: 15px;
@@ -49,21 +46,54 @@ h1,h2,h3,h4,h5,h6{
   font-family: "junction", sans-serif;
 }
 
-.title {
-  color: white;
-  font-size: 3rem;
-}
+
 
 .row {
   margin: 0;
 }
 
 /* .input-field input, .input-field textarea{ */
-.input-field label, a{
+.input-field label, a, h3, h4, h5{
   color: white !important;
 }
 
 input[type='text'], textarea.materialize-textarea, textarea {
   border-bottom: 1px solid white !important;
+  color: black;
+}
+
+.row {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px 50px 50px 50px;
+}
+
+.article-row {
+  padding: 0;
+}
+
+.title-row {
   color: white;
+  font-size: 3rem;
+  background: none;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center
+}
+
+.row .col {
+  padding: 0px 1rem !important;
+}
+
+h4 {
+  text-align: center;
+}
+
+.active {
+  font-size: 1rem !important;
+}
+
+h5 {
+  margin-bottom: 25px !important;
 }

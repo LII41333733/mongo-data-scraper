@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
     if (err) {
       res.send(err)
     } else {
-      Article.findOneAndUpdate({'url': req.body.url}, {
+      Article.findOneAndUpdate({'blogLink': req.body.blogLink}, {
         $push: {
           'comments': comment._id
         }

@@ -14,24 +14,11 @@ router.get('/', function (req, res) {
       $('.type-article').each(function (i, element) {
 
 
-        // let div = '';
-
-        // probe(imageURL).then(result => {
-        //   if (result.height < 300) {
-        //     div = "small-div"
-        //   } else {
-        //     div = "big-div"
-        //   }
-        // });
-
-        // console.log(div)
-
         let reviewObj = {
-          blogLink: `www.si.com${$(element).children().find('.headline a').attr('href')}`,
+          blogLink: `https://www.si.com${$(element).children().find('.headline a').attr('href')}`,
           writer: $(element).find('.style-orange').text().trim(),
           title: $(element).children('.article-info').find('.media-heading').text().trim(),
           category: $(element).children('.article-info').find('.unskinned').text().trim(),
-          // imageURL: $(element).find('.inner-container img').attr('src'),
           description: $(element).find('.summary').text().trim(),
           imageURL: $(element).find('.inner-container img').attr('src')
         }
@@ -89,7 +76,7 @@ router.get('/review/:id', function (req, res) {
   Article.find({
     _id: id
   }).populate('comments').exec(function (err, doc) {
-    console.log(doc)
+    // console.log(doc)
     const review = doc[0]
     const blogLink = review.blogLink
     let comments = [...review.comments]
