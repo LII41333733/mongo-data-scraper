@@ -3,15 +3,15 @@
         
         <div class="col s12 m3">
           
-          <img src="{{artwork}}" alt="{{artist}} image" style="width: 100%" class="z-depth-5"/>
-          <h5>Pitchfork Score: {{score}}</h5>
-          <p>Genre: {{genre}}</p>
-          <a href="{{url}}" target="_blank">View on Pitchfork</a>
+          <img src="{{imageURL}}" alt="{{title}} image" style="width: 100%" class="z-depth-5"/>
+          <h5>{{category}}</h5>
+          <a href="{{blogLink}}" target="_blank">View on Sports Illustrated</a>
+          <a href="/" target="_blank">NFL Scrape Home</a>
         </div>
         <div class="col s12 m9">
-          <h3>{{artist}}</h3>
-          <h4>{{album}}</h4>
-          {{{body}}}
+          <h3>{{title}}</h3>
+          <h4>{{writer}}</h4>
+          {{{reviewText}}}
           <div class="divider"></div>
             <h3>Comments</h3>
             <div class="comment-container">
@@ -25,9 +25,9 @@
           <div class="divider"></div>
           <h3>Leave A Comment</h3>
             
-           <form class="form-inline" data-id="{{url}}">
+           <form class="form-inline" data-id="{{blogLink}}">
             <div class="input-field">
-              <input type="text" class="validate comment-name" name="name" placeholder="Name" />
+              <input type="text" class="validate comment-name" name="name" placeholder="Your Name" />
               <label for="name">What is your name?</label>
             </div>
             <div class="input-field">

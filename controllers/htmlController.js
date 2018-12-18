@@ -4,7 +4,6 @@ const Article = require('../models/Articles.js')
 const axios = require('axios')
 const cheerio = require('cheerio')
 
-var probe = require('probe-image-size');
 
 
 router.get('/', function (req, res) {
@@ -28,7 +27,7 @@ router.get('/', function (req, res) {
         // console.log(div)
 
         let reviewObj = {
-          link: `https://www.si.com${$(element).children().attr('href')}`,
+          blogLink: `www.si.com${$(element).children().find('.headline a').attr('href')}`,
           writer: $(element).find('.style-orange').text().trim(),
           title: $(element).children('.article-info').find('.media-heading').text().trim(),
           category: $(element).children('.article-info').find('.unskinned').text().trim(),
@@ -55,9 +54,15 @@ router.get('/', function (req, res) {
               }
             })
           }
+        }).catch(function (err) {
+          console.log(err);
+          res.send(err);
         })
 
       })
+    }).catch(function (err) {
+      console.log(err);
+      res.send(err);
     }).then(function () {
       Article.find({}).populate('comments').sort({
         date: -1
@@ -80,32 +85,29 @@ router.get('/', function (req, res) {
 
 router.get('/review/:id', function (req, res) {
   let id = req.params.id
-  // let reviewUrl;
+
   Article.find({
     _id: id
   }).populate('comments').exec(function (err, doc) {
-    let review = doc[0]
-    let reviewUrl = review.url
+    console.log(doc)
+    const review = doc[0]
+    const blogLink = review.blogLink
     let comments = [...review.comments]
-    axios.get(reviewUrl).then(function (html) {
+    axios.get(blogLink).then(function (html) {
       let $ = cheerio.load(html.data)
-      let artist = review.artist
-      let album = review.album
-      let artwork = review.artwork
-      let score = $('.score').text()
-      let genre = $('.genre-list').text()
-      genre = genre.replace(/([A-Z])/g, ' /$1').trim()
-      let reviewText = $('.review-detail__text').clone()
-      reviewText.find('.featured-tracks').remove()
+      let writer = review.writer
+      let title = review.title
+      let category = review.category
+      let imageURL = review.imageURL
+      let reviewText = $('.article.body').clone()
 
       let reviewBody = {
-        artist: artist,
-        album: album,
-        artwork: artwork,
-        score: score,
-        genre: genre,
-        body: reviewText,
-        url: reviewUrl,
+        writer: writer,
+        title: title,
+        category: category,
+        reviewText: reviewText,
+        blogLink: blogLink,
+        imageURL: imageURL,
         comments: comments
       }
 

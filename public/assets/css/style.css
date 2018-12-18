@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to bottom, #4f8ece 0%, #e2ebf0 100%);
+  background-image: linear-gradient(to bottom, #1f5d28 0%, #e2ebf0 100%);
   background-attachment: fixed;
   font-family: "prociono",serif;
   font-size: 16px;
@@ -14,7 +14,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .card .card-image .card-title, .card .card-title {
-  font-size: 14px;
+  font-size: 15px;
   padding: 5px;
   width: 100%;
 }
@@ -31,14 +31,21 @@ h1,h2,h3,h4,h5,h6{
   display: none;
 }
 
+.card:hover {
+  background-color: #747474;
+}
+/* .card {
+  background-color: white;
+} */
+
 .sideways {
   transform: rotate(90deg);
   transform-origin: right top;
   font-size: 2.5rem;
   position: fixed;
-  top: 90vh;
+  top: 80vh;
   right: 5vh;
-  color: #ff1744;
+  color: #fffffffa;
   font-family: "junction", sans-serif;
 }
 
@@ -49,4 +56,14 @@ h1,h2,h3,h4,h5,h6{
 
 .row {
   margin: 0;
+}
+
+/* .input-field input, .input-field textarea{ */
+.input-field label, a{
+  color: white !important;
+}
+
+input[type='text'], textarea.materialize-textarea, textarea {
+  border-bottom: 1px solid white !important;
+  color: white;
 }

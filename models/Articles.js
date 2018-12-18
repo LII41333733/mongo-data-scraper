@@ -7,6 +7,9 @@ const ArticleSchema = new Schema({
   writer: {
     type: String
   },
+  blogLink: {
+    type: String
+  },
   // title: just a string
   title: {
     type: String,
